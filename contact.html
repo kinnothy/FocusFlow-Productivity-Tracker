@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact &mdash; Focus Flow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Inter', sans-serif; color: #1a2e40; background: #fff; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 1px solid #e8f0f7;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .logo { font-size: 1.2rem; font-weight: 700; color: #1a3a5c; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 0.9rem; color: #5a7a94; font-weight: 500; }
+    .nav-links a:hover,
+    .nav-links a.active { color: #1a3a5c; }
+
+    /* Button */
+    .btn {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: #2e6da4; }
+
+    /* Page header */
+    .page-header {
+      background: linear-gradient(160deg, #f0f8ff, #e0edf8);
+      padding: 70px 60px 60px;
+      text-align: center;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #3ab5a8;
+      margin-bottom: 12px;
+    }
+
+    h1 { font-size: 2.4rem; font-weight: 700; color: #1a3a5c; margin-bottom: 12px; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: #1a3a5c; margin-bottom: 14px; }
+
+    .subtitle { font-size: 1rem; color: #5a7a94; line-height: 1.7; max-width: 460px; margin: 0 auto; }
+
+    .section { padding: 70px 60px; }
+
+    /* Contact layout */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h2 { margin-bottom: 12px; }
+    .contact-info > p {
+      font-size: 0.92rem;
+      color: #5a7a94;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .info-item { margin-bottom: 24px; }
+    .info-item strong { display: block; font-size: 0.85rem; font-weight: 600; color: #1a3a5c; margin-bottom: 4px; }
+    .info-item span { font-size: 0.88rem; color: #5a7a94; }
+
+    /* Form */
+    .form-group { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1a3a5c;
+      margin-bottom: 7px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #d0e4f0;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #1a2e40;
+      background: #fff;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: #2e6da4; }
+    textarea { resize: vertical; min-height: 140px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      background: #e6f8f6;
+      border: 1.5px solid #3ab5a8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 0.9rem;
+      color: #1a6b63;
+      margin-top: 16px;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a3a5c;
+      padding: 50px 60px 30px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p { font-size: 0.86rem; line-height: 1.7; max-width: 240px; margin-top: 10px; }
+    .footer-brand .logo { color: #fff; }
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 0.86rem; color: rgba(255,255,255,0.6); }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.4); }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav, .section, .page-header, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Focus Flow</a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How it Works</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="index.html#download" class="btn">Download Free</a>
+</nav>
+
+<div class="page-header">
+  <div class="label">Contact</div>
+  <h1>Get in touch</h1>
+  <p class="subtitle">Have a question, a bug to report, or just want to say hello? We'd love to hear from you.</p>
+</div>
+
+<div class="section">
+  <div class="contact-layout">
+
+    <div class="contact-info">
+      <h2>How can we help?</h2>
+      <p>Whether you're having trouble with the extension, have a feature suggestion, or want to collaborate &mdash; reach out and we'll get back to you as soon as we can.</p>
+      <div class="info-item">
+        <strong>General Enquiries</strong>
+        <span>hello@focusflow.app</span>
+      </div>
+      <div class="info-item">
+        <strong>Bug Reports</strong>
+        <span>bugs@focusflow.app</span>
+      </div>
+      <div class="info-item">
+        <strong>Response Time</strong>
+        <span>We typically reply within 1&ndash;2 business days.</span>
+      </div>
+      <div class="info-item">
+        <strong>GitHub</strong>
+        <span>github.com/focusflow</span>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name"/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="">Select a topic</option>
+          <option>General Question</option>
+          <option>Bug Report</option>
+          <option>Feature Request</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="btn" onclick="submitContact()">Send Message</button>
+      <div class="success-msg" id="success">Your message has been sent. We'll get back to you soon!</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Focus Flow</div>
+      <p>A browser extension helping students and remote workers reclaim their focus.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how">How it Works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#download">Download</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Focus Flow &mdash; Capstone Project</span>
+    <span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script>
+  function submitContact() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message before sending.');
+      return;
+    }
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('message').value = '';
+  }
+</script>
+
+</body>
+</html>
